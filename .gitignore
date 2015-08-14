@@ -26,8 +26,6 @@ local.properties
 ### Misc. (Taken out of Eclipse) ###
 *.tmp
 *.bak
-*.swp
-*~.nib
 .gradle
 *.pydevproject
 
@@ -63,7 +61,7 @@ local.properties
 Session.vim
 .netrwhist
 *~
-
+*.swp
 
 ### Linux ###
 *~
@@ -100,6 +98,7 @@ $RECYCLE.BIN/
 .DS_Store
 .AppleDouble
 .LSOverride
+*~.nib
 
 # Icon must end with two \r
 Icon
