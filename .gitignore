@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io
+# Modified original by https://www.gitignore.io.
 
 ### Java ###
 *.class
@@ -16,18 +16,20 @@ hs_err_pid*
 
 
 ### Eclipse ###
-*.pydevproject
 .metadata
-.gradle
 bin/
 tmp/
+local.properties
+.settings/
+.loadpath
+
+### Misc. (Taken out of Eclipse) ###
 *.tmp
 *.bak
 *.swp
 *~.nib
-local.properties
-.settings/
-.loadpath
+.gradle
+*.pydevproject
 
 # Eclipse Core
 .project
