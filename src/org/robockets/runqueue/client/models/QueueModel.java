@@ -1,8 +1,9 @@
-package org.robockets.runqueue.client;
+package org.robockets.runqueue.client.models;
 
 import javax.swing.table.AbstractTableModel;
 
-public class QueueTable extends AbstractTableModel {
+public class QueueModel extends AbstractTableModel {
+	private static final long serialVersionUID = 1L; // Eclipse really wants me to have this
 	private String[] queueColumns = {"#", "Username", "Priority", "Run/Wait Time"};
 	private String[][] queue = {{"1", "USERNAME", "Medium", "0s"}, {"2", "USERNAME", "Medium", "0s"}};
 	

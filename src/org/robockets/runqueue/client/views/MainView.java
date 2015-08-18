@@ -1,4 +1,4 @@
-package org.robockets.runqueue.client;
+package org.robockets.runqueue.client.views;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,7 +10,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class MainWindow {
+import org.robockets.runqueue.client.MainWindowListener;
+import org.robockets.runqueue.client.models.QueueModel;
+
+public class MainView {
 	private final int WIDTH = 500, HEIGHT = 280;
 	private final int ROWS = 2, COLUMNS = 1;
 	private final int BUTTON_WIDTH = 100, BUTTON_HEIGHT = 30;
@@ -21,8 +24,16 @@ public class MainWindow {
 	public String queuePosition = "x";
 	public String queueSize = "x";
 	
+	private JFrame jFrame;
 	private Font font = new Font("Arial", Font.PLAIN, 30);
+	
+	private QueueModel queueModel;
 		
+	public MainView (QueueModel queueModel) {
+		this.queueModel = queueModel;
+		this.jFrame = setupWindow();
+	}
+	
 	private JFrame setupJFrame () {
         try { // Nimbus theme
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -42,7 +53,7 @@ public class MainWindow {
 		return jFrame;
 	}
 	
-	MainWindow () {
+	private JFrame setupWindow () {
 		JFrame jFrame = setupJFrame();
 		ActionListener actionListener = new MainWindowListener();
 		
@@ -109,7 +120,7 @@ public class MainWindow {
 		topPanel.add(priorityDropdown, c);
 		
 		// Bottom half of the screen
-		JTable queueTable = new JTable(new QueueTable());
+		JTable queueTable = new JTable(this.queueModel);
 		queueTable.setCellSelectionEnabled(false);
 		
 		JScrollPane queuePane = new JScrollPane(queueTable);
@@ -118,6 +129,15 @@ public class MainWindow {
 		jFrame.add(topPanel);
 		jFrame.add(queuePane);
 		jFrame.pack();
+		
+		return jFrame;
+	}
+	
+	public void display () {
 		jFrame.setVisible(true);
+	}
+	
+	public void hide () {
+		jFrame.setVisible(false);
 	}
 }
