@@ -1,4 +1,4 @@
-package org.robockets;
+package org.robockets.runqueue.client;
 
 import java.io.*;
 import java.net.*;
@@ -21,7 +21,7 @@ public class SocketWrapper extends Socket
 	*	@see java.net.Socket
 	*
 	**/
-	public SocketWrapper() {
+	public SocketWrapper () {
 		super();
 		createIO();
 	}
@@ -36,7 +36,7 @@ public class SocketWrapper extends Socket
 	*	@see java.net.Socket
 	*
 	**/
-	public SocketWrapper(InetAddress address, int port) throws IOException {
+	public SocketWrapper (InetAddress address, int port) throws IOException {
 		super(address, port);
 		createIO();
 	}
@@ -53,7 +53,7 @@ public class SocketWrapper extends Socket
 	*	@see java.net.Socket
 	*
 	**/
-	public SocketWrapper(InetAddress address, int port, InetAddress localAddr, int localPort) throws IOException {
+	public SocketWrapper (InetAddress address, int port, InetAddress localAddr, int localPort) throws IOException {
 		super(address, port, localAddr, localPort);
 		createIO();
 	}
@@ -67,7 +67,7 @@ public class SocketWrapper extends Socket
 	*	@see java.net.Socket
 	*
 	**/
-	public SocketWrapper(Proxy proxy) {
+	public SocketWrapper (Proxy proxy) {
 		super(proxy);
 		createIO();
 	}
@@ -82,7 +82,7 @@ public class SocketWrapper extends Socket
 	*	@see java.net.Socket
 	*
 	**/
-	public SocketWrapper(String host, int port) throws IOException {
+	public SocketWrapper (String host, int port) throws IOException {
 		super(host, port);
 		createIO();
 	}
@@ -99,7 +99,7 @@ public class SocketWrapper extends Socket
 	*	@see java.net.Socket
 	*
 	**/
-	public SocketWrapper(String host, int port, InetAddress localAddr, int localPort) throws IOException {
+	public SocketWrapper (String host, int port, InetAddress localAddr, int localPort) throws IOException {
 		super(host, port, localAddr, localPort);
 		createIO();
 	}
@@ -109,12 +109,12 @@ public class SocketWrapper extends Socket
 	*	Create the {@link java.io.InputStream} and {@link java.io.OutputStream} used by the {@link SocketWrapper}.
 	*
 	**/
-	private void createIO() {
+	private void createIO () {
 		try {
 			lineIn = getInputStream();
 			lineOut = getOutputStream();
 		}
-		catch(Exception ex) {
+		catch (Exception ex) {
 			System.err.println("Could not initiate SocketWrapper I/O.");
 			ex.printStackTrace();
 		}
@@ -131,7 +131,7 @@ public class SocketWrapper extends Socket
 	*	@see SocketMessageType	
 	*
 	**/
-	public void setMessageType(SocketMessageType messageType) {
+	public void setMessageType (SocketMessageType messageType) {
 		type = messageType;
 	}
 	
@@ -144,7 +144,7 @@ public class SocketWrapper extends Socket
 	*	@see SocketMessageType
 	*
 	**/
-	public SocketMessageType getMessageType() {
+	public SocketMessageType getMessageType () {
 		return type;
 	}
 	
@@ -155,7 +155,7 @@ public class SocketWrapper extends Socket
 	*	@param messages		the messages to be sent
 	*
 	**/
-	public void sendMessage(String... messages) {
+	public void sendMessage (String... messages) {
 		try {
 			for (String message : messages) {
 				for (char c : message.toCharArray())
@@ -177,7 +177,7 @@ public class SocketWrapper extends Socket
 	*	@throws SocketMessageFormatException if the message is formatted incorrectly
 	*
 	**/
-	public String getMessage() {
+	public String getMessage () {
 		String message = "";
 		try {
 			if (type == SocketMessageType.JSON) {
@@ -231,10 +231,10 @@ public class SocketWrapper extends Socket
 enum SocketMessageType {
 	JSON ((char)-1), COMMA_SEPERATED (','), NULL_TERMINATED ((char)0x0);
 	private final char seperationChar;
-	SocketMessageType(char c) {
+	SocketMessageType (char c) {
 		seperationChar = c;
 	}
-	char getSeperator() {
+	char getSeperator () {
 		return seperationChar;
 	}
 }
@@ -245,7 +245,7 @@ enum SocketMessageType {
 *
 **/
 class SocketMessageFormatException extends RuntimeException {
-	public SocketMessageFormatException(String message) {
+	public SocketMessageFormatException (String message) {
 		super(message);
 	}
 }
