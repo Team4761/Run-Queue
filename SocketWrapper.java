@@ -162,8 +162,9 @@ public class SocketWrapper extends Socket
 	public void sendMessage (String... messages) {
 		try {
 			for (String message : messages) {
-				for (char c : message.toCharArray())
+				for (char c : message.toCharArray()) {
 					lineOut.write((byte)c);
+				}
 			}
 		} catch (Exception ex) {
 			System.err.println("Error writing SocketWrapper message.");
@@ -186,8 +187,9 @@ public class SocketWrapper extends Socket
 			if (type == SocketMessageType.JSON) {
 				int bracketLevel = 0;
 				char c = (char) lineIn.read();
-				if (c != '{')
+				if (c != '{') {
 					throw new SocketMessageFormatException("JSON Message malformed (starting '{' not present)");
+				}
 				bracketLevel ++;
 				for (c = (char) lineIn.read(); bracketLevel != 0; c = (char) lineIn.read()) {
 					switch (c) {
@@ -208,12 +210,10 @@ public class SocketWrapper extends Socket
 					char d = (char) lineIn.read();
 					if (d == sep) {
 						message += d;
-					}
-					else {
+					} else {
 						message += c + d;
 					}
-				}
-				else {
+				} else {
 					message += c;
 				}
 			}
