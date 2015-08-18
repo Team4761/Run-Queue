@@ -39,7 +39,7 @@ public class Notification {
 		frame.setLayout(new GridLayout(2, 1));
 		frame.setResizable(false);
 		frame.setUndecorated(true);
-		frame.addMouseListener(new NotificationClickListener());
+		frame.addMouseListener(new MouseClickListener());
 		//frame.setMinimumSize(new Dimension(150, 10));
 		
 		titleLabel = new JLabel(title, JLabel.LEFT);
