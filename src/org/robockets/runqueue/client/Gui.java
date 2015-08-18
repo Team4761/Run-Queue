@@ -10,7 +10,7 @@ import java.awt.Insets;
 import javax.swing.*;
 
 public class Gui {
-	private final int WIDTH = 500, HEIGHT = 500;
+	private final int WIDTH = 500, HEIGHT = 350;
 	private final int ROWS = 2, COLUMNS = 1;
 	private final int BUTTON_HEIGHT = 30;
 	
@@ -18,8 +18,6 @@ public class Gui {
 	public String username = "USERNAME";
 	public String queuePosition = "x";
 	public String queueSize = "x";
-	private String[] queueColumns = {"#", "Username", "Priority", "Run/Wait Time"};
-	public String[][] queue = {{"1", "USERNAME", "Medium", "0s"}};
 	
 	private JComboBox<String> priorityDropdown;
 	private JLabel positionLabel, usernameLabel;
@@ -27,6 +25,16 @@ public class Gui {
 	private JTable queueTable;
 	private Font font = new Font("Arial", Font.PLAIN, 30);
 		
+	private JFrame setupJFrame () {
+		JFrame jFrame = new JFrame("Robo Run-Queue Client");
+		jFrame.setSize(WIDTH, HEIGHT);
+		jFrame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		jFrame.setLayout(new GridLayout(ROWS, COLUMNS));
+		
+		return jFrame;
+	}
+	
 	Gui () {
 		// Set nice looking Nimbus theme
         try {
@@ -39,13 +47,11 @@ public class Gui {
         } catch (Exception e) {
             //  If Nimbus is not available, you can set the GUI to another look and feel.
         }
-		
-		JFrame jFrame = new JFrame("Robo Run-Queue Client");
-		jFrame.setSize(WIDTH, HEIGHT);
-		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setLayout(new GridLayout(ROWS, COLUMNS));
+        
+		JFrame jFrame = setupJFrame();
 		
 		JPanel topPanel = new JPanel();
+		topPanel.setMaximumSize(new Dimension(WIDTH, HEIGHT / 2));
 		topPanel.setLayout(new GridBagLayout());
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -55,6 +61,7 @@ public class Gui {
 		c.gridx = 0;
 		c.gridy = 0;
 		c.ipadx = 100;
+		c.anchor = GridBagConstraints.PAGE_START;
 	    topPanel.add(positionLabel, c);
 		
 	    usernameLabel = new JLabel(username);
@@ -63,6 +70,7 @@ public class Gui {
 		c.gridx = 3;
 		c.gridy = 0;
 		c.ipadx = 0;
+		c.anchor = GridBagConstraints.PAGE_END;
 	    topPanel.add(usernameLabel, c);
 	    
 	    enableButton = new JButton("Enable");
@@ -70,14 +78,14 @@ public class Gui {
 	    c.gridx = 0;
 	    c.gridy = 3;
 	    c.anchor = GridBagConstraints.LINE_START;
-	    c.insets = new Insets(50, 0, 20, 0);
+	    c.insets = new Insets(50, 0, 0, 0);
 	    topPanel.add(enableButton, c);
 	    
 	    disableButton = new JButton("Disable");
 	    disableButton.setPreferredSize(new Dimension(100, BUTTON_HEIGHT));
 	    c.gridx = 0;
 	    c.gridy = 3;
-	    c.insets = new Insets(50, 100, 20, 30);
+	    c.insets = new Insets(50, 100, 0, 30);
 	    c.anchor = GridBagConstraints.LINE_START;
 	    topPanel.add(disableButton, c);
 
@@ -85,7 +93,7 @@ public class Gui {
 	    c.gridx = 3;
 	    c.gridy = 3;
 	    c.anchor = GridBagConstraints.LINE_START;
-	    c.insets = new Insets(50, 30, 20, 0);
+	    c.insets = new Insets(50, 30, 0, 0);
 	    topPanel.add(priorityLabel, c);
 	    
 	    priorityDropdown = new JComboBox<String>(priorities);
@@ -93,15 +101,18 @@ public class Gui {
 	    priorityDropdown.setPreferredSize(new Dimension(150, BUTTON_HEIGHT));
 	    c.gridx = 3;
 		c.gridy = 3;
-		c.insets = new Insets(50, 50, 20, 0);
+		c.insets = new Insets(50, 50, 0, 0);
 		c.anchor = GridBagConstraints.LINE_END;
-		topPanel.add(priorityDropdown, c);		
+		topPanel.add(priorityDropdown, c);
 		
-		queueTable = new JTable(queue, queueColumns);
-		queueTable.setFillsViewportHeight(false);
+		queueTable = new JTable(new QueueTable());
+		queueTable.setCellSelectionEnabled(false);
 		
-		jFrame.getContentPane().add(topPanel);
-		jFrame.getContentPane().add(queueTable);
+		JScrollPane queuePane = new JScrollPane(queueTable);
+		queuePane.setMaximumSize(new Dimension(WIDTH, HEIGHT / 2));
+		
+		jFrame.add(topPanel);
+		jFrame.add(queuePane);
 		jFrame.pack();
 		jFrame.setVisible(true);
 	}
