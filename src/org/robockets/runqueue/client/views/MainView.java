@@ -48,7 +48,9 @@ public class MainView {
                     break;
                 }
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        	System.out.println(e);
+        }
 		
 		JFrame jFrame = new JFrame("Robo Run-Queue Client");
 		jFrame.setSize(WIDTH, HEIGHT);
