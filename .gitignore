@@ -1,5 +1,9 @@
 # Modified original by https://www.gitignore.io.
 
+### Custom-set Targets ###
+docs/
+doc/
+
 ### Java ###
 *.class
 
