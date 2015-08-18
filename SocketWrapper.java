@@ -13,8 +13,8 @@ import java.net.Socket;
 *	Wrapper for {@link Socket} that allows them to easily send and recieve messages in a variety of formats.
 *
 **/
-public class SocketWrapper extends Socket
-{
+public class SocketWrapper extends Socket {
+	
 	private SocketMessageType type = SocketMessageType.JSON;
 	private InputStream lineIn;
 	private OutputStream lineOut;
