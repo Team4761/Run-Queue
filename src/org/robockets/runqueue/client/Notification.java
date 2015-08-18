@@ -20,11 +20,20 @@ public class Notification {
 	GridBagLayout layout;
 	GridBagConstraints gbc;
 	
+	/**
+	 * Constructor for notifications. Make an instance of one of these then run
+	 * {@link #show()}.
+	 * @param title Title for the notification (example: "Run Queue Client")
+	 * @param message Message you would like the user to recieve (example: "Something is broken!")
+	 */
 	public Notification(String title, String message) {
 		this.title = title;
 		this.message = message;
 	}
 	
+	/**
+	 * Set up the GUI.
+	 */
 	private void prepare() {
 		frame = new JFrame("RQC Notification");
 		frame.setLayout(new GridLayout(2, 1));
@@ -52,6 +61,11 @@ public class Notification {
 		frame.pack();
 	}
 	
+	/**
+	 * Show the notification you prepared on the users desktop. This method
+	 * calculates where the frame ought to be and then sets the frame to
+	 * visible.
+	 */
 	public void show() {
 		prepare();
 		Dimension size = frame.getPreferredSize();
@@ -60,10 +74,16 @@ public class Notification {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * @return Width of screen in pixels
+	 */
 	private int getScreenWidth() {
 	    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
 	}
 
+	/**
+	 * @return Height of screen in pixels
+	 */
 	private int getScreenHeight() {
 	    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
 	}
