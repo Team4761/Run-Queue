@@ -16,7 +16,7 @@ import org.robockets.runqueue.client.models.QueueModel;
 public class MainView {
 	private final int WIDTH = 500, HEIGHT = 280;
 	private final int ROWS = 2, COLUMNS = 1;
-	private final int BUTTON_WIDTH = 100, BUTTON_HEIGHT = 30;
+	private final int BUTTON_WIDTH = 100;
 	private final int SECOND_LINE_OFFSET = 50;
 	
 	private String[] priorities = {"Critical", "High", "Medium", "Low"};
@@ -121,6 +121,8 @@ public class MainView {
 		// Bottom half of the screen
 		JTable queueTable = new JTable(this.queueModel);
 		queueTable.setCellSelectionEnabled(false);
+		queueTable.getTableHeader().setReorderingAllowed(false);
+		queueTable.getTableHeader().setResizingAllowed(false);
 		
 		JScrollPane queuePane = new JScrollPane(queueTable);
 		queuePane.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -132,9 +134,5 @@ public class MainView {
 	
 	public void display () {
 		jFrame.setVisible(true);
-	}
-	
-	public void hide () {
-		jFrame.setVisible(false);
 	}
 }
