@@ -3,6 +3,9 @@ package org.robockets.runqueue.client.controllers;
 import org.robockets.runqueue.client.models.Models;
 import org.robockets.runqueue.client.views.MainView;
 
+/**
+ * Controller for the MainView view
+ */
 public class MainController {
 	private MainView view;
 	
@@ -10,14 +13,27 @@ public class MainController {
 		this.view = new MainView(Models.queue);
 	}
 	
+	/**
+	 * Called to display the main view
+	 */
 	public void show () {
 		view.display();
 	}
 	
+	/**
+	 * Used to update the usernameLabel on the top right of the main view
+	 * 
+	 * @param username the user's username
+	 */
 	public void updateUsername (String username) {
 		view.usernameLabel.setText(username);
 	}
 	
+	/**
+	 * Used to update the length of the queue that is displayed by the positionLabel
+	 * 
+	 * @param length the length of the queue
+	 */
 	public void updateQueueLength (int length) {
 		String positionString = view.positionLabel.getText();
 		String halfPosition = positionString.split("/")[0] + "/";
@@ -25,6 +41,12 @@ public class MainController {
 		view.positionLabel.setText(fullString);
 	}
 	
+	/**
+	 * Used to update the position of the user in the queue that is displayed
+	 * by the positionLabel
+	 * 
+	 * @param position the position of the user in the queue
+	 */
 	public void updateQueuePosition (int position) {
 		String positionString = view.positionLabel.getText();
 		String[] positionSplit = positionString.split("/");

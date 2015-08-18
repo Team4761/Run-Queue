@@ -40,6 +40,11 @@ public class MainView {
 		this.setupWindow();
 	}
 	
+	/**
+	 * Create the JFrame to be used for this view
+	 * 
+	 * @return the JFrame
+	 */
 	private JFrame setupJFrame () {
         try { // Nimbus theme
             for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
@@ -61,6 +66,9 @@ public class MainView {
 		return jFrame;
 	}
 	
+	/**
+	 * Setup all the components to be displayed in this view
+	 */
 	private void setupWindow () {
 		ActionListener actionListener = new MainWindowListener();
 		
@@ -141,6 +149,9 @@ public class MainView {
 		jFrame.pack();
 	}
 	
+	/**
+	 * Display the JFrame
+	 */
 	public void display () {
 		jFrame.setVisible(true);
 	}
