@@ -163,7 +163,7 @@ public class SocketWrapper extends Socket {
 		try {
 			for (String message : messages) {
 				for (char c : message.toCharArray()) {
-					lineOut.write((byte)c);
+					lineOut.write((byte) c);
 				}
 			}
 		} catch (Exception ex) {
