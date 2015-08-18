@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -26,6 +27,15 @@ public class Gui {
 	private Font font = new Font("Arial", Font.PLAIN, 30);
 		
 	private JFrame setupJFrame () {
+        try { // Nimbus theme
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {}
+		
 		JFrame jFrame = new JFrame("Robo Run-Queue Client");
 		jFrame.setSize(WIDTH, HEIGHT);
 		jFrame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -36,19 +46,8 @@ public class Gui {
 	}
 	
 	Gui () {
-		// Set nice looking Nimbus theme
-        try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
-            //  If Nimbus is not available, you can set the GUI to another look and feel.
-        }
-        
 		JFrame jFrame = setupJFrame();
+		ActionListener actionListener = new MainWindowListener();
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setMaximumSize(new Dimension(WIDTH, HEIGHT / 2));
@@ -75,6 +74,8 @@ public class Gui {
 	    
 	    enableButton = new JButton("Enable");
 	    enableButton.setPreferredSize(new Dimension(100, BUTTON_HEIGHT));
+	    enableButton.setActionCommand("ENABLE_BUTTON");
+	    enableButton.addActionListener(actionListener);
 	    c.gridx = 0;
 	    c.gridy = 3;
 	    c.anchor = GridBagConstraints.LINE_START;
@@ -83,6 +84,8 @@ public class Gui {
 	    
 	    disableButton = new JButton("Disable");
 	    disableButton.setPreferredSize(new Dimension(100, BUTTON_HEIGHT));
+	    disableButton.setActionCommand("DISABLE_BUTTON");
+	    disableButton.addActionListener(actionListener);
 	    c.gridx = 0;
 	    c.gridy = 3;
 	    c.insets = new Insets(50, 100, 0, 30);
@@ -99,6 +102,8 @@ public class Gui {
 	    priorityDropdown = new JComboBox<String>(priorities);
 	    priorityDropdown.setSelectedIndex(2);
 	    priorityDropdown.setPreferredSize(new Dimension(150, BUTTON_HEIGHT));
+	    priorityDropdown.setActionCommand("PRIORITY_DROPDOWN");
+	    priorityDropdown.addActionListener(actionListener);
 	    c.gridx = 3;
 		c.gridy = 3;
 		c.insets = new Insets(50, 50, 0, 0);
