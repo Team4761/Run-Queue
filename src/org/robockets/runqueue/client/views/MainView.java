@@ -62,7 +62,7 @@ public class MainView {
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
-		positionLabel = new JLabel("Position: x/x");
+		positionLabel = new JLabel("Position: 1/1");
 		font = font.deriveFont(30f);
 		positionLabel.setFont(font);
 		c.gridx = 0;
@@ -81,21 +81,21 @@ public class MainView {
 	    topPanel.add(usernameLabel, c);
 	    
 	    JButton enableButton = new JButton("Enable");
-	    enableButton.setMinimumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 	    enableButton.setActionCommand("ENABLE_BUTTON");
 	    enableButton.addActionListener(actionListener);
 	    c.gridx = 0;
 	    c.gridy = 3;
+	    c.ipadx = BUTTON_WIDTH / 3;
 	    c.anchor = GridBagConstraints.LINE_START;
 	    c.insets = new Insets(SECOND_LINE_OFFSET, 0, 0, 0);
 	    topPanel.add(enableButton, c);
 	    
 	    JButton disableButton = new JButton("Disable");
-	    disableButton.setMinimumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 	    disableButton.setActionCommand("DISABLE_BUTTON");
 	    disableButton.addActionListener(actionListener);
 	    c.gridx = 0;
 	    c.gridy = 3;
+	    c.ipadx = BUTTON_WIDTH / 3;
 	    c.insets = new Insets(SECOND_LINE_OFFSET, BUTTON_WIDTH, 0, 30);
 	    c.anchor = GridBagConstraints.LINE_START;
 	    topPanel.add(disableButton, c);
@@ -109,11 +109,11 @@ public class MainView {
 	    
 	    JComboBox<String> priorityDropdown = new JComboBox<String>(priorities);
 	    priorityDropdown.setSelectedIndex(2);
-	    priorityDropdown.setMinimumSize(new Dimension(150, BUTTON_HEIGHT));
 	    priorityDropdown.setActionCommand("PRIORITY_DROPDOWN");
 	    priorityDropdown.addActionListener(actionListener);
 	    c.gridx = 3;
 		c.gridy = 3;
+		c.ipadx = 50;
 		c.insets = new Insets(SECOND_LINE_OFFSET, 50, 0, 2);
 		c.anchor = GridBagConstraints.LINE_END;
 		topPanel.add(priorityDropdown, c);
