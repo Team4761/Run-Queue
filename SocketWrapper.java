@@ -118,8 +118,7 @@ public class SocketWrapper extends Socket
 		try {
 			lineIn = getInputStream();
 			lineOut = getOutputStream();
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.err.println("Could not initiate SocketWrapper I/O.");
 			ex.printStackTrace();
 		}
@@ -166,8 +165,7 @@ public class SocketWrapper extends Socket
 				for (char c : message.toCharArray())
 					lineOut.write((byte)c);
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.err.println("Error writing SocketWrapper message.");
 			ex.printStackTrace();
 		}
@@ -219,8 +217,7 @@ public class SocketWrapper extends Socket
 					message += c;
 				}
 			}
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			System.err.println("Error reading SocketWrapper message.");
 			ex.printStackTrace();
 		}
