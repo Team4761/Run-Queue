@@ -182,11 +182,11 @@ public class SocketWrapper extends Socket
 		try {
 			if (type == SocketMessageType.JSON) {
 				int bracketLevel = 0;
-				char c = (char)lineIn.read();
-				if (c!='{')
+				char c = (char) lineIn.read();
+				if (c != '{')
 					throw new SocketMessageFormatException("JSON Message malformed (starting '{' not present)");
 				bracketLevel ++;
-				for (c = (char)lineIn.read(); bracketLevel != 0; c = (char)lineIn.read()) {
+				for (c = (char) lineIn.read(); bracketLevel != 0; c = (char) lineIn.read()) {
 					switch (c) {
 						case '{':
 							bracketLevel ++;
@@ -200,10 +200,10 @@ public class SocketWrapper extends Socket
 				return message;
 			}
 			char sep = type.getSeperator();
-			for (char c = (char)lineIn.read(); c != sep; c = (char)lineIn.read()) {
-				if (c=='\\') {
-					char d = (char)lineIn.read();
-					if (d==sep) {
+			for (char c = (char) lineIn.read(); c != sep; c = (char) lineIn.read()) {
+				if (c == '\\') {
+					char d = (char) lineIn.read();
+					if (d == sep) {
 						message += d;
 					}
 					else {
@@ -229,7 +229,7 @@ public class SocketWrapper extends Socket
 *
 **/
 enum SocketMessageType {
-	JSON ((char)-1), COMMA_SEPERATED (','), NULL_TERMINATED ((char)0x0);
+	JSON ((char) -1), COMMA_SEPERATED (','), NULL_TERMINATED ((char) 0x0);
 	private final char seperationChar;
 	SocketMessageType (char c) {
 		seperationChar = c;
