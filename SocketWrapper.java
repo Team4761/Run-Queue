@@ -1,7 +1,12 @@
 package org.robockets.runqueue.client;
 
-import java.io.*;
-import java.net.*;
+import java.io.InputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import java.net.InetAddress;
+import java.net.Proxy;
+import java.net.Socket;
 
 /**
 *
