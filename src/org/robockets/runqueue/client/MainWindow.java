@@ -10,20 +10,17 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class Gui {
-	private final int WIDTH = 500, HEIGHT = 350;
+public class MainWindow {
+	private final int WIDTH = 500, HEIGHT = 280;
 	private final int ROWS = 2, COLUMNS = 1;
-	private final int BUTTON_HEIGHT = 30;
+	private final int BUTTON_WIDTH = 100, BUTTON_HEIGHT = 30;
+	private final int SECOND_LINE_OFFSET = 50;
 	
 	private String[] priorities = {"Critical", "High", "Medium", "Low"};
 	public String username = "USERNAME";
 	public String queuePosition = "x";
 	public String queueSize = "x";
 	
-	private JComboBox<String> priorityDropdown;
-	private JLabel positionLabel, usernameLabel;
-	private JButton enableButton, disableButton;
-	private JTable queueTable;
 	private Font font = new Font("Arial", Font.PLAIN, 30);
 		
 	private JFrame setupJFrame () {
@@ -45,50 +42,51 @@ public class Gui {
 		return jFrame;
 	}
 	
-	Gui () {
+	MainWindow () {
 		JFrame jFrame = setupJFrame();
 		ActionListener actionListener = new MainWindowListener();
 		
+		// Top half of the screen
 		JPanel topPanel = new JPanel();
-		topPanel.setMaximumSize(new Dimension(WIDTH, HEIGHT / 2));
+		topPanel.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		topPanel.setLayout(new GridBagLayout());
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
-		positionLabel = new JLabel("Position");
+		JLabel positionLabel = new JLabel("Position");
 		positionLabel.setFont(font);
 		c.gridx = 0;
 		c.gridy = 0;
 		c.ipadx = 100;
-		c.anchor = GridBagConstraints.PAGE_START;
+		c.anchor = GridBagConstraints.LINE_START;
 	    topPanel.add(positionLabel, c);
 		
-	    usernameLabel = new JLabel(username);
+	    JLabel usernameLabel = new JLabel(username);
 	    font = font.deriveFont(40f);
 	    usernameLabel.setFont(font);
 		c.gridx = 3;
 		c.gridy = 0;
 		c.ipadx = 0;
-		c.anchor = GridBagConstraints.PAGE_END;
+		c.anchor = GridBagConstraints.LINE_END;
 	    topPanel.add(usernameLabel, c);
 	    
-	    enableButton = new JButton("Enable");
-	    enableButton.setPreferredSize(new Dimension(100, BUTTON_HEIGHT));
+	    JButton enableButton = new JButton("Enable");
+	    enableButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 	    enableButton.setActionCommand("ENABLE_BUTTON");
 	    enableButton.addActionListener(actionListener);
 	    c.gridx = 0;
 	    c.gridy = 3;
 	    c.anchor = GridBagConstraints.LINE_START;
-	    c.insets = new Insets(50, 0, 0, 0);
+	    c.insets = new Insets(SECOND_LINE_OFFSET, 0, 0, 0);
 	    topPanel.add(enableButton, c);
 	    
-	    disableButton = new JButton("Disable");
-	    disableButton.setPreferredSize(new Dimension(100, BUTTON_HEIGHT));
+	    JButton disableButton = new JButton("Disable");
+	    disableButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 	    disableButton.setActionCommand("DISABLE_BUTTON");
 	    disableButton.addActionListener(actionListener);
 	    c.gridx = 0;
 	    c.gridy = 3;
-	    c.insets = new Insets(50, 100, 0, 30);
+	    c.insets = new Insets(SECOND_LINE_OFFSET, BUTTON_WIDTH, 0, 30);
 	    c.anchor = GridBagConstraints.LINE_START;
 	    topPanel.add(disableButton, c);
 
@@ -96,25 +94,26 @@ public class Gui {
 	    c.gridx = 3;
 	    c.gridy = 3;
 	    c.anchor = GridBagConstraints.LINE_START;
-	    c.insets = new Insets(50, 30, 0, 0);
+	    c.insets = new Insets(SECOND_LINE_OFFSET, 30, 0, 0);
 	    topPanel.add(priorityLabel, c);
 	    
-	    priorityDropdown = new JComboBox<String>(priorities);
+	    JComboBox<String> priorityDropdown = new JComboBox<String>(priorities);
 	    priorityDropdown.setSelectedIndex(2);
 	    priorityDropdown.setPreferredSize(new Dimension(150, BUTTON_HEIGHT));
 	    priorityDropdown.setActionCommand("PRIORITY_DROPDOWN");
 	    priorityDropdown.addActionListener(actionListener);
 	    c.gridx = 3;
 		c.gridy = 3;
-		c.insets = new Insets(50, 50, 0, 0);
+		c.insets = new Insets(SECOND_LINE_OFFSET, 50, 0, 0);
 		c.anchor = GridBagConstraints.LINE_END;
 		topPanel.add(priorityDropdown, c);
 		
-		queueTable = new JTable(new QueueTable());
+		// Bottom half of the screen
+		JTable queueTable = new JTable(new QueueTable());
 		queueTable.setCellSelectionEnabled(false);
 		
 		JScrollPane queuePane = new JScrollPane(queueTable);
-		queuePane.setMaximumSize(new Dimension(WIDTH, HEIGHT / 2));
+		queuePane.setMaximumSize(new Dimension(WIDTH, HEIGHT));
 		
 		jFrame.add(topPanel);
 		jFrame.add(queuePane);
