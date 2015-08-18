@@ -20,18 +20,17 @@ public class MainView {
 	private final int SECOND_LINE_OFFSET = 50;
 	
 	private String[] priorities = {"Critical", "High", "Medium", "Low"};
-	public String username = "USERNAME";
-	public String queuePosition = "x";
-	public String queueSize = "x";
 	
 	private JFrame jFrame;
 	private Font font = new Font("Arial", Font.PLAIN, 30);
+	public JLabel usernameLabel, positionLabel;
 	
 	private QueueModel queueModel;
 		
 	public MainView (QueueModel queueModel) {
 		this.queueModel = queueModel;
-		this.jFrame = setupWindow();
+		this.jFrame = this.setupJFrame();
+		this.setupWindow();
 	}
 	
 	private JFrame setupJFrame () {
@@ -53,8 +52,7 @@ public class MainView {
 		return jFrame;
 	}
 	
-	private JFrame setupWindow () {
-		JFrame jFrame = setupJFrame();
+	private void setupWindow () {
 		ActionListener actionListener = new MainWindowListener();
 		
 		// Top half of the screen
@@ -64,7 +62,8 @@ public class MainView {
 		
 		GridBagConstraints c = new GridBagConstraints();
 		
-		JLabel positionLabel = new JLabel("Position");
+		positionLabel = new JLabel("Position: x/x");
+		font = font.deriveFont(30f);
 		positionLabel.setFont(font);
 		c.gridx = 0;
 		c.gridy = 0;
@@ -72,7 +71,7 @@ public class MainView {
 		c.anchor = GridBagConstraints.LINE_START;
 	    topPanel.add(positionLabel, c);
 		
-	    JLabel usernameLabel = new JLabel(username);
+	    usernameLabel = new JLabel("USERNAME");
 	    font = font.deriveFont(40f);
 	    usernameLabel.setFont(font);
 		c.gridx = 3;
@@ -82,7 +81,7 @@ public class MainView {
 	    topPanel.add(usernameLabel, c);
 	    
 	    JButton enableButton = new JButton("Enable");
-	    enableButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+	    enableButton.setMinimumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 	    enableButton.setActionCommand("ENABLE_BUTTON");
 	    enableButton.addActionListener(actionListener);
 	    c.gridx = 0;
@@ -92,7 +91,7 @@ public class MainView {
 	    topPanel.add(enableButton, c);
 	    
 	    JButton disableButton = new JButton("Disable");
-	    disableButton.setPreferredSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
+	    disableButton.setMinimumSize(new Dimension(BUTTON_WIDTH, BUTTON_HEIGHT));
 	    disableButton.setActionCommand("DISABLE_BUTTON");
 	    disableButton.addActionListener(actionListener);
 	    c.gridx = 0;
@@ -110,12 +109,12 @@ public class MainView {
 	    
 	    JComboBox<String> priorityDropdown = new JComboBox<String>(priorities);
 	    priorityDropdown.setSelectedIndex(2);
-	    priorityDropdown.setPreferredSize(new Dimension(150, BUTTON_HEIGHT));
+	    priorityDropdown.setMinimumSize(new Dimension(150, BUTTON_HEIGHT));
 	    priorityDropdown.setActionCommand("PRIORITY_DROPDOWN");
 	    priorityDropdown.addActionListener(actionListener);
 	    c.gridx = 3;
 		c.gridy = 3;
-		c.insets = new Insets(SECOND_LINE_OFFSET, 50, 0, 0);
+		c.insets = new Insets(SECOND_LINE_OFFSET, 50, 0, 2);
 		c.anchor = GridBagConstraints.LINE_END;
 		topPanel.add(priorityDropdown, c);
 		
@@ -129,8 +128,6 @@ public class MainView {
 		jFrame.add(topPanel);
 		jFrame.add(queuePane);
 		jFrame.pack();
-		
-		return jFrame;
 	}
 	
 	public void display () {

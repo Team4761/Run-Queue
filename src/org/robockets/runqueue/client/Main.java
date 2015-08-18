@@ -2,15 +2,16 @@ package org.robockets.runqueue.client;
 
 import javax.swing.SwingUtilities;
 
-import org.robockets.runqueue.client.models.QueueModel;
-import org.robockets.runqueue.client.views.MainView;
+import org.robockets.runqueue.client.controllers.MainController;
 
 public class Main {
-
+	// Controller declarations
+	public static MainController mainController = new MainController();
+	
 	public static void main(String args[]) {
 		SwingUtilities.invokeLater(new Runnable () {
 			public void run () {
-				new MainView(new QueueModel()).display();
+				mainController.show();
 			}
 		});
 	}
