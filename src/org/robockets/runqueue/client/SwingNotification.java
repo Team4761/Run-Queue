@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Notification {
+public class SwingNotification {
 	private String title;
 	private String message;
 	
@@ -26,7 +26,7 @@ public class Notification {
 	 * @param title Title for the notification (example: "Run Queue Client")
 	 * @param message Message you would like the user to recieve (example: "Something is broken!")
 	 */
-	public Notification(String title, String message) {
+	public SwingNotification(String title, String message) {
 		this.title = title;
 		this.message = message;
 	}
