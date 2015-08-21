@@ -9,6 +9,7 @@ import java.util.Iterator;
 public class User {
 	private String name;
 	private Calendar timeLastJoined;
+	
 	/**
 	 * Constructor for creating new users.
 	 * @param name Username for the user
@@ -16,12 +17,14 @@ public class User {
 	public User(String name) {
 		this.name = name;
 	}
+	
 	/**
 	 * @return User's username
 	 */
 	public String getName() {
 		return name;
 	}
+	
 	/**
 	 * Updates the name of the user
 	 * @param newName The new name for the user
@@ -29,12 +32,14 @@ public class User {
 	public void setName(String newName) {
 		name = newName;
 	}
+	
 	/**
 	 * @return The last time the user entered the queue
 	 */
 	public Calendar getTimeLastJoined() {
 		return timeLastJoined;
 	}
+	
 	/**
 	 * @return Is the user currently in the queue or not?
 	 */
@@ -48,6 +53,7 @@ public class User {
 		}
 		return false;
 	}
+	
 	/**
 	 * Puts the user in the last place in the queue.
 	 */
@@ -55,6 +61,7 @@ public class User {
 		timeLastJoined = Calendar.getInstance();
 		Server.userQueue.add(this);
 	}
+	
 	/**
 	 * Remove the user from the queue. <b>Not completed yet.</b>
 	 */
