@@ -34,7 +34,7 @@ public class SwingNotification {
 	/**
 	 * Set up the GUI.
 	 */
-	private void prepare() {
+	private void prepare () {
 		frame = new JFrame("RQC Notification");
 		frame.setLayout(new GridLayout(2, 1));
 		frame.setResizable(false);
@@ -66,7 +66,7 @@ public class SwingNotification {
 	 * calculates where the frame ought to be and then sets the frame to
 	 * visible.
 	 */
-	public void show() {
+	public void show () {
 		prepare();
 		Dimension size = frame.getPreferredSize();
 		int padding = 15;
@@ -77,14 +77,14 @@ public class SwingNotification {
 	/**
 	 * @return Width of screen in pixels
 	 */
-	private int getScreenWidth() {
+	private int getScreenWidth () {
 	    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().width;
 	}
 
 	/**
 	 * @return Height of screen in pixels
 	 */
-	private int getScreenHeight() {
+	private int getScreenHeight () {
 	    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
 	}
 }
