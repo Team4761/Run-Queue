@@ -21,7 +21,7 @@ public class User {
 	/**
 	 * @return User's username
 	 */
-	public String getName() {
+	public String getName () {
 		return name;
 	}
 	
@@ -29,21 +29,21 @@ public class User {
 	 * Updates the name of the user
 	 * @param newName The new name for the user
 	 */
-	public void setName(String newName) {
+	public void setName (String newName) {
 		name = newName;
 	}
 	
 	/**
 	 * @return The last time the user entered the queue
 	 */
-	public Calendar getTimeLastJoined() {
+	public Calendar getTimeLastJoined () {
 		return timeLastJoined;
 	}
 	
 	/**
 	 * @return Is the user currently in the queue or not?
 	 */
-	public boolean isInQueue() {
+	public boolean isInQueue () {
 		Iterator<User> iterator = Server.userQueue.iterator();
 		while(iterator.hasNext()) {
 			User iteratorValue = (User) iterator.next();
@@ -57,7 +57,7 @@ public class User {
 	/**
 	 * Puts the user in the last place in the queue.
 	 */
-	public void joinQueue() {
+	public void joinQueue () {
 		timeLastJoined = Calendar.getInstance();
 		Server.userQueue.add(this);
 	}
@@ -65,7 +65,7 @@ public class User {
 	/**
 	 * Remove the user from the queue. <b>Not completed yet.</b>
 	 */
-	public void leaveQueue() {
+	public void leaveQueue () {
 		timeLastJoined = null;
 		//TODO: drop user from queue
 	}
