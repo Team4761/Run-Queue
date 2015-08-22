@@ -84,6 +84,7 @@ public class SwingNotification {
 	/**
 	 * @return Height of screen in pixels
 	 */
+	@SuppressWarnings("unused")
 	private int getScreenHeight () {
 	    return java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds().height;
 	}
