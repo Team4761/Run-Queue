@@ -8,10 +8,20 @@ project(':client') {
 	dependencies {
 		compile project(':common')
 	}
+	jar {
+		manifest {
+			attributes 'Main-Class': 'org.robockets.runqueue.client.Main'
+		}
+	}
 }
 
 project(':server') {
 	dependencies {
 		compile project(':common')
+	}
+	jar {
+		manifest {
+			attributes 'Main-Class': 'org.robockets.runqueue.server.Server'
+		}
 	}
 }
