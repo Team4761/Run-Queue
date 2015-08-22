@@ -11,7 +11,6 @@ public class MainWindowListener implements ActionListener {
 	/**
 	 * Gets called whenever the state of a component changes. Ex. button presses
 	 */
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("ENABLE_BUTTON")) {
 			JButton button = (JButton) e.getSource();			
