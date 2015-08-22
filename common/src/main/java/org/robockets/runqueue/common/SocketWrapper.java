@@ -1,4 +1,4 @@
-package org.robockets.runqueue.client;
+package org.robockets.runqueue.common;
 
 import java.io.InputStream;
 import java.io.IOException;

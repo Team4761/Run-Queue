@@ -1,2 +1,17 @@
-apply plugin: 'eclipse'
-apply plugin: 'java'
+subprojects {
+    apply plugin: 'java'
+    group = 'org.robockets.runqueue'
+    version = '0.0.1'
+}
+
+project(':client') {
+	dependencies {
+		compile project(':common')
+	}
+}
+
+project(':server') {
+	dependencies {
+		compile project(':common')
+	}
+}
