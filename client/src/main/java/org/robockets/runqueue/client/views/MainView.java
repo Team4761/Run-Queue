@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import org.robockets.runqueue.client.controllers.Controllers;
 import org.robockets.runqueue.client.models.QueueModel;
 
 public class MainView implements ActionListener {
@@ -28,8 +29,8 @@ public class MainView implements ActionListener {
 	private String[] priorities = {"Critical", "High", "Medium", "Low"};
 	
 	private JFrame jFrame;
-	private JButton enableButton, disableButton;
-	private JComboBox<String> priorityDropdown;
+	public JButton enableButton, disableButton;
+	public JComboBox<String> priorityDropdown;
 	private Font font = new Font("Arial", Font.PLAIN, 30);
 	public JLabel usernameLabel, positionLabel;
 	
@@ -152,13 +153,11 @@ public class MainView implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("ENABLE_BUTTON")) {
-			enableButton.setEnabled(false);
-			disableButton.setEnabled(true);
+			Controllers.main.onEnableButtonPress();
 		} else if (e.getActionCommand().equals("DISABLE_BUTTON")) {
-			enableButton.setEnabled(true);
-			disableButton.setEnabled(false);
+			Controllers.main.onDisableButtonPress();
 		} else if (e.getActionCommand().equals("PRIORITY_DROPDOWN")) {
-			System.out.println("Dropdown set to " + priorityDropdown.getSelectedItem());
+			Controllers.main.onDropdownSelect();
 		}
 	}
 }

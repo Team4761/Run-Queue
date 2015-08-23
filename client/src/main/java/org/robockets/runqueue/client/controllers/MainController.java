@@ -53,4 +53,18 @@ public class MainController {
 		String fullString = positionSplit[0].split(" ")[0] + " " + Integer.toString(position) + "/" + positionSplit[1];
 		view.positionLabel.setText(fullString);
 	}
+	
+	public void onEnableButtonPress () {
+		view.enableButton.setEnabled(false);
+		view.disableButton.setEnabled(true);
+	}
+	
+	public void onDisableButtonPress () {
+		view.enableButton.setEnabled(true);
+		view.disableButton.setEnabled(false);
+	}
+	
+	public void onDropdownSelect () {
+		System.out.println("Dropdown set to " + view.priorityDropdown.getSelectedItem());
+	}
 }
