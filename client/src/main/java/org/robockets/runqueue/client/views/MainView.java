@@ -46,20 +46,8 @@ public class MainView {
 	 * @return the JFrame
 	 */
 	private JFrame setupJFrame () {
-        try { // Nimbus theme
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception e) {
-        	System.out.println(e);
-        }
-		
-		JFrame jFrame = new JFrame("Robo Run-Queue Client");
-		jFrame.setSize(WIDTH, HEIGHT);
-		jFrame.setMaximumSize(new Dimension(WIDTH, HEIGHT));
+		JFrame jFrame = new JFrame("Run-Queue Client");
+		jFrame.setResizable(false);
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jFrame.setLayout(new GridLayout(ROWS, COLUMNS));
 		
@@ -147,6 +135,8 @@ public class MainView {
 		jFrame.add(topPanel);
 		jFrame.add(queuePane);
 		jFrame.pack();
+		
+		jFrame.setSize(WIDTH, HEIGHT);
 	}
 	
 	/**
