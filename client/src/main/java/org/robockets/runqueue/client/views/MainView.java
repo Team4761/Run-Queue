@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -16,10 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import org.robockets.runqueue.client.MainWindowListener;
 import org.robockets.runqueue.client.models.QueueModel;
 
-public class MainView {
+public class MainView implements ActionListener {
 	private final int WIDTH = 500, HEIGHT = 280;
 	private final int ROWS = 2, COLUMNS = 1;
 	private final int BUTTON_WIDTH = 100;
@@ -28,6 +28,8 @@ public class MainView {
 	private String[] priorities = {"Critical", "High", "Medium", "Low"};
 	
 	private JFrame jFrame;
+	private JButton enableButton, disableButton;
+	private JComboBox<String> priorityDropdown;
 	private Font font = new Font("Arial", Font.PLAIN, 30);
 	public JLabel usernameLabel, positionLabel;
 	
@@ -56,9 +58,7 @@ public class MainView {
 	/**
 	 * Setup all the components to be displayed in this view
 	 */
-	private void setupWindow () {
-		ActionListener actionListener = new MainWindowListener();
-		
+	private void setupWindow () {		
 		// Top half of the screen
 		JPanel topPanel = new JPanel();
 		topPanel.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -84,9 +84,10 @@ public class MainView {
 		c.anchor = GridBagConstraints.LINE_END;
 	    topPanel.add(usernameLabel, c);
 	    
-	    JButton enableButton = new JButton("Enable");
+	    enableButton = new JButton("Enable");
+	    enableButton.setEnabled(true);
 	    enableButton.setActionCommand("ENABLE_BUTTON");
-	    enableButton.addActionListener(actionListener);
+	    enableButton.addActionListener(this);
 	    c.gridx = 0;
 	    c.gridy = 3;
 	    c.ipadx = BUTTON_WIDTH / 3;
@@ -94,9 +95,10 @@ public class MainView {
 	    c.insets = new Insets(SECOND_LINE_OFFSET, 0, 0, 0);
 	    topPanel.add(enableButton, c);
 	    
-	    JButton disableButton = new JButton("Disable");
+	    disableButton = new JButton("Disable");
+	    disableButton.setEnabled(false);
 	    disableButton.setActionCommand("DISABLE_BUTTON");
-	    disableButton.addActionListener(actionListener);
+	    disableButton.addActionListener(this);
 	    c.gridx = 0;
 	    c.gridy = 3;
 	    c.ipadx = BUTTON_WIDTH / 3;
@@ -111,10 +113,10 @@ public class MainView {
 	    c.insets = new Insets(SECOND_LINE_OFFSET, 30, 0, 0);
 	    topPanel.add(priorityLabel, c);
 	    
-	    JComboBox<String> priorityDropdown = new JComboBox<String>(priorities);
+	    priorityDropdown = new JComboBox<String>(priorities);
 	    priorityDropdown.setSelectedIndex(2);
 	    priorityDropdown.setActionCommand("PRIORITY_DROPDOWN");
-	    priorityDropdown.addActionListener(actionListener);
+	    priorityDropdown.addActionListener(this);
 	    c.gridx = 3;
 		c.gridy = 3;
 		c.ipadx = 50;
@@ -143,5 +145,20 @@ public class MainView {
 	 */
 	public void display () {
 		jFrame.setVisible(true);
+	}
+	
+	/**
+	 * Gets called whenever the state of a component changes. Ex. button presses
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (e.getActionCommand().equals("ENABLE_BUTTON")) {
+			enableButton.setEnabled(false);
+			disableButton.setEnabled(true);
+		} else if (e.getActionCommand().equals("DISABLE_BUTTON")) {
+			enableButton.setEnabled(true);
+			disableButton.setEnabled(false);
+		} else if (e.getActionCommand().equals("PRIORITY_DROPDOWN")) {
+			System.out.println("Dropdown set to " + priorityDropdown.getSelectedItem());
+		}
 	}
 }
