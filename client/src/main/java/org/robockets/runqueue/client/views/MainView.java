@@ -15,7 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.UIManager;
 
 import org.robockets.runqueue.client.MainWindowListener;
 import org.robockets.runqueue.client.models.QueueModel;
