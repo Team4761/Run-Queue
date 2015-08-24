@@ -22,7 +22,7 @@ public class Main {
 		
 		SwingUtilities.invokeLater(new Runnable () {
 			public void run () {
-				Controllers.main.show();
+				Controllers.usernamePopup.show();
 			}
 		});
 	}
