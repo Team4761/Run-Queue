@@ -80,7 +80,7 @@ public class MainView {
 	    usernameLabel.setFont(font);
 		c.gridx = 3;
 		c.gridy = 0;
-		c.ipadx = 0;
+		c.ipadx = 2;
 		c.anchor = GridBagConstraints.LINE_END;
 	    topPanel.add(usernameLabel, c);
 	    
@@ -104,11 +104,12 @@ public class MainView {
 	    c.anchor = GridBagConstraints.LINE_START;
 	    topPanel.add(disableButton, c);
 
-	    JLabel priorityLabel = new JLabel("Priority: ");
+	    JLabel priorityLabel = new JLabel("Priority:");
 	    c.gridx = 3;
 	    c.gridy = 3;
+	    c.ipadx = 0;
 	    c.anchor = GridBagConstraints.LINE_START;
-	    c.insets = new Insets(SECOND_LINE_OFFSET, 30, 0, 0);
+	    c.insets = new Insets(SECOND_LINE_OFFSET, 50, 0, 0);
 	    topPanel.add(priorityLabel, c);
 	    
 	    JComboBox<String> priorityDropdown = new JComboBox<String>(priorities);
@@ -118,8 +119,8 @@ public class MainView {
 	    c.gridx = 3;
 		c.gridy = 3;
 		c.ipadx = 50;
-		c.insets = new Insets(SECOND_LINE_OFFSET, 50, 0, 2);
-		c.anchor = GridBagConstraints.LINE_END;
+		c.insets = new Insets(SECOND_LINE_OFFSET, 105, 0, 0);
+		c.anchor = GridBagConstraints.LINE_START;
 		topPanel.add(priorityDropdown, c);
 		
 		// Bottom half of the screen
