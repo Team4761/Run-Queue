@@ -111,6 +111,19 @@ public class SocketWrapper extends Socket {
 	
 	/**
 	*
+	*	Using an already created {@link java.net.Socket} set up a SocketWrapper I/O.
+	*
+	*	@param socket			an already created socket, presumably from ServerSocket.accept()
+	*
+	*	@see java.net.Socket
+	*
+	**/
+	public SocketWrapper (Socket socket) throws IOException {
+		createIO(socket);
+	}
+	
+	/**
+	*
 	*	Create the {@link java.io.InputStream} and {@link java.io.OutputStream} used by the {@link SocketWrapper}.
 	*
 	**/
@@ -120,6 +133,23 @@ public class SocketWrapper extends Socket {
 			lineOut = getOutputStream();
 		} catch (Exception ex) {
 			System.err.println("Could not initiate SocketWrapper I/O.");
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	*
+	*	Create the {@link java.io.InputStream} and {@link java.io.OutputStream} used by the {@link SocketWrapper} with a given socket.
+	*
+	*	@param socket			the socket to create input and output streams from
+	*
+	**/
+	private void createIO (Socket socket) {
+		try {
+			lineIn = socket.getInputStream();
+			lineOut = socket.getOutputStream();
+		} catch (Exception ex) {
+			System.err.println("Could not initiate SocketWrapper I/O with given socket.");
 			ex.printStackTrace();
 		}
 	}
