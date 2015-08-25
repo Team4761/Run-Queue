@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import org.robockets.runqueue.client.controllers.Controllers;
 
 public class UsernamePopupView implements ActionListener {
-	private final int WIDTH = 300, HEIGHT = 90;
+	private final int WIDTH = 300, HEIGHT = 100;
 
 	public JTextField usernameField;
 	private JFrame jFrame;
@@ -33,7 +33,7 @@ public class UsernamePopupView implements ActionListener {
 	 */
 	private JFrame setupJFrame () {
 		JFrame jFrame = new JFrame("Run-Queue Client");
-		jFrame.setBounds(new Rectangle((getScreenWidth() / 2) - (WIDTH / 2), (getScreenHeight() / 2) - (HEIGHT / 2), 300, 90));
+		jFrame.setBounds(new Rectangle((getScreenWidth() / 2) - (WIDTH / 2), (getScreenHeight() / 2) - (HEIGHT / 2), WIDTH, HEIGHT));
 		jFrame.setResizable(false);
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jFrame.setLayout(new GridBagLayout());
@@ -52,6 +52,7 @@ public class UsernamePopupView implements ActionListener {
 		promptLabel.setFont(font);
 		c.gridx = 0;
 		c.gridy = 0;
+		c.gridwidth = 2;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.insets = new Insets(0, 0, 5, 0);
 		jFrame.add(promptLabel, c);
@@ -61,14 +62,19 @@ public class UsernamePopupView implements ActionListener {
 		usernameField.addActionListener(this);
 		c.gridx = 0;
 		c.gridy = 1;
+		c.gridwidth = 1;
+		c.ipadx = 175;
+		c.insets = new Insets(0, 0, 0, 5);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		jFrame.add(usernameField, c);
 		
-		JButton usernameButton = new JButton("Enter");
+		JButton usernameButton = new JButton("Continue");
 		usernameButton.setActionCommand("ENTER_BUTTON");
 		usernameButton.addActionListener(this);
 		c.gridx = 1;
 		c.gridy = 1;
+		c.gridwidth = 1;
+		c.ipadx = 15;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		jFrame.add(usernameButton, c);
 	}
