@@ -3,15 +3,18 @@ package org.robockets.runqueue.server;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import org.robockets.runqueue.common.SocketWrapper;
 
 public class Server {
 	public static Queue<User> userQueue = new LinkedList<User>();
 	public static void main(String args[]) {
 		// CLI argument handling.
-		ServerSocket serverSocket;
+		ServerSocket serverSocket = null;
 		// Defaults
 		int port = 211; // Texas instruments occupies port 211, but who cares?
 		int backlog = 0;
@@ -57,6 +60,20 @@ public class Server {
 		} catch (IOException e){
 			e.printStackTrace();
 			System.exit(0);
+		}
+		
+		try {
+			while (true) {
+				Socket connection = serverSocket.accept();
+				SocketWrapper wrapper = new SocketWrapper(connection);
+				
+				String message = wrapper.getMessage();
+				
+				wrapper.close();
+				connection.close(); // TODO: wrapper should close this without me having to.
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
