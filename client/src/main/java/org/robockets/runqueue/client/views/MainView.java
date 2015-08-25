@@ -131,6 +131,7 @@ public class MainView implements ActionListener {
 		queueTable.setCellSelectionEnabled(false);
 		queueTable.getTableHeader().setReorderingAllowed(false);
 		queueTable.getTableHeader().setResizingAllowed(false);
+		queueTable.setFocusable(false);
 		
 		JScrollPane queuePane = new JScrollPane(queueTable);
 		queuePane.setMaximumSize(new Dimension(WIDTH, HEIGHT));
