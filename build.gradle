@@ -2,13 +2,25 @@ subprojects {
     apply plugin: 'java'
     group = 'org.robockets.runqueue'
     version = '0.0.1'
+	repositories {
+		mavenCentral()
+	}
 }
 
 project(':client') {
 	dependencies {
+		compile 'de.sciss:weblaf:1.28'
 		compile project(':common')
 	}
 	jar {
+		from {
+			configurations.compile.collect {
+				it.isDirectory() ? it : zipTree(it)
+			}
+			configurations.runtime.collect {
+				it.isDirectory() ? it : zipTree(it)
+			}
+		}
 		manifest {
 			attributes 'Main-Class': 'org.robockets.runqueue.client.Main'
 		}
@@ -21,6 +33,14 @@ project(':server') {
 		compile group: 'org.json', name: 'org.json-java', version: '20131017'
 	}
 	jar {
+		from {
+			configurations.compile.collect {
+				it.isDirectory() ? it : zipTree(it)
+			}
+			configurations.runtime.collect {
+				it.isDirectory() ? it : zipTree(it)
+			}
+		}
 		manifest {
 			attributes 'Main-Class': 'org.robockets.runqueue.server.Server'
 		}
