@@ -7,12 +7,11 @@ import org.robockets.runqueue.client.controllers.Controllers;
 import com.alee.laf.WebLookAndFeel;
 
 public class Main {
-	
-	public static void main(String args[]) {
-		WebLookAndFeel.install();
-		
+	public static void main(String args[]) {		
 		SwingUtilities.invokeLater(new Runnable () {
 			public void run () {
+				WebLookAndFeel.install();
+				
 				Controllers.usernamePopup.show();
 			}
 		});
