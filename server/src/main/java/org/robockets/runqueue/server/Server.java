@@ -16,7 +16,7 @@ public class Server {
 		// CLI argument handling.
 		ServerSocket serverSocket = null;
 		// Defaults
-		int port = 211; // Texas instruments occupies port 211, but who cares?
+		int port = 1033; // 1033 is pretty random.
 		int backlog = 0;
 		InetAddress bindAddr = null;
 		
