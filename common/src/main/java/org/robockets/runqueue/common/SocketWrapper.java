@@ -220,6 +220,7 @@ public class SocketWrapper extends Socket {
 				if (c != '{') {
 					throw new SocketMessageFormatException("JSON Message malformed (starting '{' not present)");
 				}
+				message += c; // Don't forget to add the character back into the message!
 				bracketLevel ++;
 				for (c = (char) lineIn.read(); bracketLevel != 0; c = (char) lineIn.read()) {
 					switch (c) {
