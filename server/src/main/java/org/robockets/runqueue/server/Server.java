@@ -1,12 +1,17 @@
 package org.robockets.runqueue.server;
 
 import java.io.IOException;
+
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
 import java.util.LinkedList;
 import java.util.Queue;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import org.robockets.runqueue.common.SocketWrapper;
 
@@ -68,6 +73,25 @@ public class Server {
 				SocketWrapper wrapper = new SocketWrapper(connection);
 				
 				String message = wrapper.getMessage();
+				String command;
+				JSONObject parsed;
+				
+				try {
+					parsed = new JSONObject(message);
+					command = parsed.getString("command");
+				} catch (JSONException e) {
+					System.err.println("Error in JSON! Skipping!");
+					e.printStackTrace();
+					wrapper.close();
+					connection.close();
+					continue;
+				}
+				
+				switch (command) {
+					case "print":
+						// Print code here.
+						break;
+				}
 				
 				wrapper.close();
 				connection.close(); // TODO: wrapper should close this without me having to.
