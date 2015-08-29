@@ -89,7 +89,7 @@ public class Server {
 				
 				switch (command) {
 					case "print":
-						// Print code here.
+						wrapper.sendMessage("{message:\"Hello World!\"}");
 						break;
 				}
 				
