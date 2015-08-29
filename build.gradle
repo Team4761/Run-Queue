@@ -30,6 +30,7 @@ project(':client') {
 project(':server') {
 	dependencies {
 		compile project(':common')
+		compile group: 'org.json', name: 'org.json-java', version: '20131017'
 	}
 	jar {
 		from {
