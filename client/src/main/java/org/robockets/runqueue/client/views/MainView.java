@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -16,6 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import org.robockets.runqueue.client.controllers.Controllers;
 import org.robockets.runqueue.client.models.QueueModel;
@@ -33,6 +36,7 @@ public class MainView implements ActionListener {
 	public JComboBox<String> priorityDropdown;
 	private Font font = new Font("Arial", Font.PLAIN, 30);
 	public JLabel usernameLabel, positionLabel;
+	public JTextField usernameField;
 	
 	private QueueModel queueModel;
 		
@@ -76,9 +80,36 @@ public class MainView implements ActionListener {
 		c.anchor = GridBagConstraints.LINE_START;
 	    topPanel.add(positionLabel, c);
 		
+	    usernameField = new JTextField("USERNAME", 20);
+	    font = font.deriveFont(40f);
+	    usernameField.setFont(font);
+	    usernameField.setMinimumSize(new Dimension(225, 47));
+	    usernameField.setVisible(false);
+	    usernameField.addMouseListener(new MouseAdapter () {
+	    	public final void mouseExited (MouseEvent e) {
+	    		String text = usernameField.getText();
+	    		usernameLabel.setText(text);
+	    		usernameLabel.setVisible(true);
+	    		usernameField.setVisible(false);
+	    		Controllers.main.updateUsername(text);
+	    	}
+	    });
+	    c.gridx = 3;
+		c.gridy = 0;
+		c.ipadx = 2;
+		c.anchor = GridBagConstraints.LINE_END;
+	    topPanel.add(usernameField, c);
+	    
 	    usernameLabel = new JLabel("USERNAME");
 	    font = font.deriveFont(40f);
 	    usernameLabel.setFont(font);
+	    usernameLabel.addMouseListener(new MouseAdapter () {
+	    	public final void mouseEntered (MouseEvent e) {
+	    		usernameField.setText(usernameLabel.getText());
+	    		usernameLabel.setVisible(false);
+	    		usernameField.setVisible(true);
+	    	}
+	    });
 		c.gridx = 3;
 		c.gridy = 0;
 		c.ipadx = 2;
