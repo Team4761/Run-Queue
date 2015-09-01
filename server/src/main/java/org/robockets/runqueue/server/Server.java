@@ -25,7 +25,7 @@ public class Server {
 		int backlog = 0;
 		InetAddress bindAddr = null;
 		
-		switch(args.length){
+		switch (args.length){
 		/*
 		 * NOTE: No case 0: because that is default.
 		 * NOTE: Descending order without breaks because of the logic that the ones below it should be executed.
@@ -56,7 +56,7 @@ public class Server {
 		}
 		
 		try {
-			if(bindAddr != null){
+			if (bindAddr != null){
 				// NOTE: Not dead code, eclipse is wrong.
 				serverSocket = new ServerSocket(port, backlog, bindAddr);
 			} else {
