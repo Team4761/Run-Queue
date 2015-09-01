@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 public class MouseClickListener extends MouseAdapter {
 	public void mouseClicked (MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
-			System.exit(0);
+			SwingNotification.clear();
 		}
 	}
 }
