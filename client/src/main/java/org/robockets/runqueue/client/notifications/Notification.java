@@ -13,8 +13,6 @@ public class Notification {
 	public void send () {
 		if (isMac()) {
 			sendMac();
-		} else if (isWindows()) {
-			sendWindows();
 		} else {
 			sendOther();
 		}
