@@ -1,4 +1,4 @@
-package org.robockets.runqueue.client;
+package org.robockets.runqueue.client.notifications;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
