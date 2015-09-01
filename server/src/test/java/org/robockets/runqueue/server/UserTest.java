@@ -18,7 +18,7 @@ public class UserTest {
 	 */
 	@Before
 	@Test
-	public void testCanCreateUserInstance() {
+	public void testCanCreateUserInstance () {
 		testUser = new User(name);
 	}
 
@@ -26,7 +26,7 @@ public class UserTest {
 	 * Do the getters and setters for the name field work?
 	 */
 	@Test
-	public void testNameMethodsWork() {
+	public void testNameMethodsWork () {
 		assertEquals("User's name has somehow changed", testUser.getName(), name);
 		String newName = "Fred";
 		testUser.setName(newName);
@@ -37,7 +37,7 @@ public class UserTest {
 	 * Does the class accurately report if the user is in the queue or not?
 	 */
 	@Test
-	public void testIsInQueueMethod() {
+	public void testIsInQueueMethod () {
 		assertFalse("User is somehow in the queue before joining", testUser.isInQueue());
 		testUser.joinQueue(Priority.NORMAL);
 		assertTrue("User is somehow not in the queue after joining", testUser.isInQueue());
@@ -49,7 +49,7 @@ public class UserTest {
 	 * Does the getter for the priority field work?
 	 */
 	@Test
-	public void testGetPriorityWorks() {
+	public void testGetPriorityWorks () {
 		testUser.joinQueue(Priority.NORMAL);
 		assertEquals("User priority is not Priority.NORMAL", testUser.getPriority(), Priority.NORMAL);
 		testUser.leaveQueue();
@@ -61,7 +61,7 @@ public class UserTest {
 	 * time joined in the future.
 	 */
 	@Test
-	public void testGetTimeJoinedWorks() {
+	public void testGetTimeJoinedWorks () {
 		testUser.joinQueue(Priority.NORMAL);
 		assert(testUser.getTimeJoined() instanceof Calendar);
 		testUser.leaveQueue();
@@ -71,7 +71,7 @@ public class UserTest {
 	 * Can the user join and leave the queue without any trouble?
 	 */
 	@Test
-	public void testQueueMethodsWork() {
+	public void testQueueMethodsWork () {
 		testUser.joinQueue(Priority.NORMAL);
 		testUser.leaveQueue();
 	}

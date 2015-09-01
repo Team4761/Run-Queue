@@ -38,7 +38,7 @@ public class User {
 	/**
 	 * @return {@link org.robockets.runqueue.server.Priority Priority} of the user in the queue
 	 */
-	public Priority getPriority() {
+	public Priority getPriority () {
 		return priority;
 	}
 	

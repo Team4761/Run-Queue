@@ -25,13 +25,14 @@ public class Queue {
 	public static User next () {
 		boolean foundUser = false;
 		User u;
-		while(foundUser == false) {
+		while (foundUser == false) {
 			u = userQueue.remove();
-			if(u.isInQueue()) {
+			if (u.isInQueue()) {
 				foundUser = true;
 				return u;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -41,14 +42,16 @@ public class Queue {
 	public static ArrayList<User> getAllInQueue() {
 		Iterator<User> iterator = userQueue.iterator();
 		ArrayList<User> ret = new ArrayList<User>();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			System.out.println("Has next!");
 			User iteratorValue = (User) iterator.next();
 			System.out.println(iteratorValue.isInQueue());
-			if(iteratorValue.isInQueue()) {
+			if (iteratorValue.isInQueue()) {
 				ret.add(iteratorValue);
 			}
+			
 		}
+		
 		return ret;
 	}
 	
@@ -57,8 +60,9 @@ public class Queue {
 	 */
 	public static void clear() {
 		Iterator<User> iterator = userQueue.iterator();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			userQueue.remove();
 		}
+		
 	}
 }

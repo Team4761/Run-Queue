@@ -19,9 +19,11 @@ public class UserPriorityComparator implements Comparator<User> {
 		if (u1.getPriority().ordinal() < u2.getPriority().ordinal()) {
 			return -1;
 		}
+		
 		if (u1.getPriority().ordinal() > u2.getPriority().ordinal()) {
 			return 1;
 		}
+		
 		return 0;
 	}
 

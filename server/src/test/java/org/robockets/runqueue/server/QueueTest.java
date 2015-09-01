@@ -18,7 +18,7 @@ public class QueueTest {
 	 * Adds the test users to the queue.
 	 */
 	@Before
-	public void addTestUsersToQueue() {
+	public void addTestUsersToQueue () {
 		for(User u : users) {
 			Queue.add(u, Priority.NORMAL);
 		}
@@ -28,11 +28,12 @@ public class QueueTest {
 	 * Does getAllInQueue() return an accurate list of users in the queue?
 	 */
 	@Test
-	public void testGetUsersInQueue() {
+	public void testGetUsersInQueue () {
 		ArrayList<User> testArrayList = new ArrayList<User>();
 		for(User u : users) {
 			testArrayList.add(u);
 		}
+		
 		assertEquals(testArrayList, Queue.getAllInQueue());
 		testArrayList.remove(x);
 		x.leaveQueue();
@@ -41,7 +42,7 @@ public class QueueTest {
 	
 	/*
 	@Test
-	public void testNextMethod() {
+	public void testNextMethod () {
 		//TODO: Add test for next()
 	}
 	*/
@@ -50,10 +51,11 @@ public class QueueTest {
 	 * Does the clear method remove every user in the queue?
 	 */
 	@Test
-	public void testClearMethod() {
+	public void testClearMethod () {
 		for(User u : users) {
 			Queue.add(u, Priority.NORMAL);
 		}
+		
 		Queue.clear();
 		assertEquals(new ArrayList<User>(), Queue.getAllInQueue());
 	}
