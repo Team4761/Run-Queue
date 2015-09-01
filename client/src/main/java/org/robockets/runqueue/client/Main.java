@@ -15,5 +15,8 @@ public class Main {
 				Controllers.usernamePopup.show();
 			}
 		});
+		
+		LogicLoop logicLoop = new LogicLoop();
+		logicLoop.start();
 	}
 }
