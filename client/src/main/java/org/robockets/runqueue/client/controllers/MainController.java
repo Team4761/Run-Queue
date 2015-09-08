@@ -1,5 +1,7 @@
 package org.robockets.runqueue.client.controllers;
 
+import javax.swing.JTable;
+
 import org.robockets.runqueue.client.models.Models;
 import org.robockets.runqueue.client.views.MainView;
 
@@ -18,6 +20,10 @@ public class MainController {
 	 */
 	public void show () {
 		view.display();
+	}
+	
+	public void updateTable () {
+		view.queueTable = new JTable(view.queueModel);
 	}
 	
 	/**

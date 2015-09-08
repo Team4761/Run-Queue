@@ -37,8 +37,9 @@ public class MainView implements ActionListener {
 	private Font font = new Font("Arial", Font.PLAIN, 30);
 	public JLabel usernameLabel, positionLabel;
 	public JTextField usernameField;
+	public JTable queueTable;
 	
-	private QueueModel queueModel;
+	public QueueModel queueModel;
 		
 	public MainView (QueueModel queueModel) {
 		this.queueModel = queueModel;
@@ -158,7 +159,7 @@ public class MainView implements ActionListener {
 		topPanel.add(priorityDropdown, c);
 		
 		// Bottom half of the screen
-		JTable queueTable = new JTable(this.queueModel);
+		queueTable = new JTable(this.queueModel);
 		queueTable.setCellSelectionEnabled(false);
 		queueTable.getTableHeader().setReorderingAllowed(false);
 		queueTable.getTableHeader().setResizingAllowed(false);

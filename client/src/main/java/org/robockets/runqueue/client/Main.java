@@ -12,7 +12,10 @@ public class Main {
 			public void run () {
 				WebLookAndFeel.install();
 				
-				Controllers.usernamePopup.show();
+				Controllers.usernamePopup.show();		
+				
+				LogicLoop logicLoop = new LogicLoop();
+				logicLoop.start();
 			}
 		});
 	}
