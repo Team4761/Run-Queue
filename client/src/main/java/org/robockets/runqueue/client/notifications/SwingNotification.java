@@ -1,9 +1,9 @@
-package org.robockets.runqueue.client;
+package org.robockets.runqueue.client.notifications;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
+import java.awt.Insets;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,7 +13,7 @@ public class SwingNotification {
 	private String title;
 	private String message;
 	
-	JFrame frame;
+	static JFrame frame;
 	JLabel titleLabel;
 	JLabel messageLabel;
 	JPanel panel;
@@ -36,11 +36,10 @@ public class SwingNotification {
 	 */
 	private void prepare () {
 		frame = new JFrame("RQC Notification");
-		frame.setLayout(new GridLayout(2, 1));
 		frame.setResizable(false);
 		frame.setUndecorated(true);
 		frame.addMouseListener(new MouseClickListener());
-		//frame.setMinimumSize(new Dimension(150, 10));
+		frame.setPreferredSize(new Dimension(200, 60));
 		
 		titleLabel = new JLabel(title, JLabel.LEFT);
 		messageLabel = new JLabel(message, JLabel.LEFT);
@@ -48,17 +47,18 @@ public class SwingNotification {
 		panel.setLayout(new GridBagLayout());
 		gbc = new GridBagConstraints();
 		
-		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.gridx = 0;
+		gbc.anchor = GridBagConstraints.LINE_START;
 		gbc.gridy = 0;
+		gbc.insets = new Insets(10, -75, 2, 0);
 		panel.add(titleLabel, gbc);
 		
-		gbc.gridx = 0;
+		gbc.anchor = GridBagConstraints.LINE_START;
 		gbc.gridy = 1;
+		gbc.insets = new Insets(0, -75, 10, 0);
 		panel.add(messageLabel, gbc);
 		
 		frame.add(panel);
-		frame.pack();
+		frame.setSize(200, 60);
 	}
 	
 	/**
@@ -70,8 +70,16 @@ public class SwingNotification {
 		prepare();
 		Dimension size = frame.getPreferredSize();
 		int padding = 15;
-		frame.setLocation(getScreenWidth() - padding - size.width, padding);
+		frame.setLocation(getScreenWidth() - padding - size.width, size.height + padding);
 		frame.setVisible(true);
+	}
+	
+	/**
+	 * Just hides the notification. Used in MouseClickListener to
+	 * clear the notification
+	 */
+	public static void clear () {
+		frame.setVisible(false);
 	}
 	
 	/**
